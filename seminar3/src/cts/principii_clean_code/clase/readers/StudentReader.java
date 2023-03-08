@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class StudentReader implements AplicantReadable {
+public class StudentReader extends AplicantReadable {
     @Override
     public List<Aplicant> readAplicants(String fileName) {
         List<Aplicant> studenti = new ArrayList<>();
@@ -19,18 +19,13 @@ public class StudentReader implements AplicantReadable {
             input.useDelimiter(",|\n");
 
             while (input.hasNext()) {
-                String nume = input.next();
-                String prenume = (input.next());
-                int varsta = Integer.valueOf(input.nextInt());
-                int punctaj = Integer.valueOf(input.nextInt());
-                int nr = Integer.valueOf(input.nextInt());
-                String[] vect = new String[5];
-                for (int i = 0; i < nr; i++)
-                    vect[i] = input.next();
-                int an_studii = input.nextInt();
-                String facultate = (input.next());
-                Student s = new Student(nume, prenume, varsta, punctaj, nr, vect, facultate, an_studii);
-                studenti.add(s);
+                Student student = new Student();
+
+                super.readAplicant(input, student);
+                student.setAn_studii(input.nextInt());
+                student.setFacultate(input.next());
+
+                studenti.add(student);
             }
             input.close();
         } catch(FileNotFoundException e) {

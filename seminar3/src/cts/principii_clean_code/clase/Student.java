@@ -1,12 +1,20 @@
 package cts.principii_clean_code.clase;
 
-import java.util.Arrays;
-
 public class Student extends Aplicant {
 	protected String facultate;
 	protected int an_studii;
-	
-	
+	private static final int sumaFinantare = 20;
+
+	public Student() {
+		super();
+	}
+
+	public Student(String nume, String prenume, int varsta, int punctaj, int nr_proiecte, String[] denumireProiect, String facultate, int an_studii) {
+		super(nume,prenume,varsta,punctaj,nr_proiecte,denumireProiect);
+		this.facultate = facultate;
+		this.an_studii = an_studii;
+	}
+
 	public String getFacultate() {
 		return facultate;
 	}
@@ -20,27 +28,18 @@ public class Student extends Aplicant {
 		this.an_studii = an_studii;
 	}
 
+	@Override
+	public void afisareFinantare() {
+		super.afisareFinantare("Student", Student.sumaFinantare);
+	}
 
-	public Student() {
-		super();
-		
-	}
-	
-	public Student(String nume, String prenume, int varsta, int punctaj, int nr_proiecte, String[] denumireProiect, String facultate, int an_studii) {
-		super(nume,prenume,varsta,punctaj,nr_proiecte,denumireProiect);
-		this.facultate = facultate;
-		this.an_studii = an_studii;
-	}
 	@Override
 	public String toString() {
-		return "Student: Nume=" + nume + ", Prenume=" + prenume + ", Varsta=" + varsta + ", Punctaj=" + punctaj + ", Nr_proiecte=" + nr_proiecte +  ", DenumireProiect=" + Arrays.toString(denumireProiect) + "Facultate=" + facultate + ", An_studii=" + an_studii ;
+		final StringBuffer sb = new StringBuffer("Student{");
+		sb.append(super.toString());
+		sb.append(", facultate='").append(facultate).append('\'');
+		sb.append(", an_studii=").append(an_studii);
+		sb.append('}');
+		return sb.toString();
 	}
-	
-	
-	public int finantare() {
-		int s=20;
-		System.out.println("Studentul "+getNume()+" "+getPrenume()+" primeste"+s+" Euro/zi in proiect.");
-		return s;
-	}
-	
 }

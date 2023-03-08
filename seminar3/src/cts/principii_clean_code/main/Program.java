@@ -13,8 +13,9 @@ public class Program {
 		AngajatReader ar = new AngajatReader();
 		listaAngajati = ar.readAplicants("angajati.txt");
 
-		for (Aplicant aplicant : listaAngajati)
+		for (Aplicant aplicant : listaAngajati) {
 			System.out.println(aplicant.toString());
+			aplicant.afisareFinantare();
+		}
 	}
-
 }
